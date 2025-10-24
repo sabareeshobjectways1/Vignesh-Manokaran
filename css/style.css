@@ -527,6 +527,34 @@
     box-shadow: none;
 }
 
+/* Make footer background silver and ensure readable dark text/icons/links
+   We override the existing .bg-dark on the footer element and the earlier
+   rules that forced white text so the silver background has high contrast. */
+#site-footer,
+.footer {
+    background-color: var(--secondary) !important;
+    color: var(--dark) !important;
+}
+
+#site-footer a,
+#site-footer .text-primary,
+#site-footer a.text-primary,
+#site-footer .display-5.text-primary,
+#site-footer .btn-link,
+#site-footer i,
+#site-footer .fa,
+#site-footer .fas,
+#site-footer .far,
+#site-footer .bi {
+    color: var(--dark) !important;
+}
+
+/* If the footer had text-white-50 utilities, neutralize them for better contrast */
+#site-footer.text-white-50,
+#site-footer .text-white-50 {
+    color: rgba(7,18,36,0.85) !important; /* near --dark at 85% opacity */
+}
+
 /* Override remaining Bootstrap blue/info usages to match our brand */
 /* Links */
 a, a:link, a:visited {
@@ -576,3 +604,137 @@ a:hover, a:focus {
 
 /* Ensure svgs that inherit currentColor use the primary */
 svg { color: inherit; }
+
+/* ------------------------------------------------------------------
+   Override Bootstrap's "light" color (#FDF5EB) to a navy blue
+   - This keeps Bootstrap intact and applies safer overrides in our
+     custom stylesheet (loaded after bootstrap.min.css).
+   - Change the `--site-navy` value below if you prefer a different
+     navy shade.
+   ------------------------------------------------------------------ */
+:root {
+    /* Lighter navy variant per request (less dark) */
+    --site-navy: #1e5aa8; /* lighter navy - change this hex if you'd like another shade */
+    --site-navy-dark: #163f72; /* hover / active slightly darker variant */
+}
+
+/* Replace the common "light" backgrounds with navy for this template.
+   Use !important to ensure we override Bootstrap utility rules. */
+.bg-light,
+.table-light {
+    background-color: var(--site-navy) !important;
+    color: #ffffff !important; /* ensure readable text on navy */
+}
+
+/* Buttons that use the "light" variant should invert to white text on navy */
+.btn-light {
+    color: #ffffff !important;
+    background-color: var(--site-navy) !important;
+    border-color: var(--site-navy) !important;
+}
+.btn-light:hover {
+    background-color: var(--site-navy-dark) !important;
+    border-color: var(--site-navy-dark) !important;
+}
+
+/* Outline / link variants that referenced the old light color */
+.btn-outline-light {
+    color: var(--site-navy) !important; /* when not hovered, keep readable */
+}
+.btn-outline-light:hover,
+.btn-check:checked + .btn-outline-light,
+.btn-check:active + .btn-outline-light,
+.btn-outline-light:active,
+.btn-outline-light.active,
+.show > .btn-outline-light.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: var(--site-navy) !important;
+    border-color: var(--site-navy) !important;
+}
+
+/* Ensure utility text classes that previously used the light color remain readable */
+.link-light,
+.text-light {
+    color: #ffffff !important;
+}
+
+/* If you prefer to change the global Bootstrap variable instead, you could
+   add: :root { --bs-light: var(--site-navy); } but that will also change
+   .text-light which we may want to keep as a light color for contrast. */
+
+/* --- Hover behavior: switch navy backgrounds to silver (site secondary) --- */
+/* Applies to utility/background elements and common components that used the
+   original "light" color. We use !important to override Bootstrap utilities. */
+.bg-light:hover,
+.table-light:hover {
+    background-color: var(--secondary) !important; /* silver */
+    color: var(--dark) !important; /* dark text for contrast */
+}
+
+/* Buttons using the "light" variant should show silver on hover */
+.btn-light:hover {
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: var(--dark) !important;
+}
+
+/* Outline-light hovered/active state should also become silver */
+.btn-outline-light:hover,
+.btn-check:checked + .btn-outline-light,
+.btn-check:active + .btn-outline-light,
+.btn-outline-light:active,
+.btn-outline-light.active,
+.show > .btn-outline-light.dropdown-toggle {
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: var(--dark) !important;
+}
+
+/* Keep links/text that used .text-light readable when backgrounds change */
+.link-light:hover,
+.text-light:hover {
+    color: var(--dark) !important;
+}
+
+/* Override the fact-item hover which previously set white — make it silver */
+.fact-item:hover {
+    margin-top: -10px;
+    background: var(--secondary) !important;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .07);
+    color: var(--dark) !important;
+}
+
+/* Ensure hero header text is white when hero uses the navy background
+   (the hero uses `bg-light` in the template; we override that to navy). */
+.hero-header.bg-light .text-primary,
+.hero-header.bg-light h1.display-4,
+.hero-header.bg-light p {
+    color: #ffffff !important;
+}
+
+/* Links and buttons inside the hero should be white as well for contrast */
+.hero-header.bg-light a,
+.hero-header.bg-light .btn,
+.hero-header.bg-light .btn a {
+    color: #ffffff !important;
+}
+
+/* If there's any element forcing dark text inside the hero, neutralize it */
+.hero-header.bg-light .text-dark {
+    color: #ffffff !important;
+}
+
+/* Keep hero background navy on hover — do NOT switch to silver like other
+   .bg-light elements. This overrides the more general `.bg-light:hover` rule. */
+.hero-header.bg-light:hover {
+    background-color: var(--site-navy) !important;
+    color: #ffffff !important;
+}
+.hero-header.bg-light:hover a,
+.hero-header.bg-light:hover .btn,
+.hero-header.bg-light:hover .text-primary {
+    color: #ffffff !important;
+}
+.hero-header.bg-light:hover .text-dark {
+    color: #ffffff !important;
+}
