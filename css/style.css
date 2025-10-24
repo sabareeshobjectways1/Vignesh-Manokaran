@@ -1,0 +1,578 @@
+/********** Template CSS **********/
+:root {
+    /* Color theme matched to logo: dark blue (primary) and silver (secondary) */
+    --primary: #0b2440; /* dark blue */
+    --secondary: #c0c6cc; /* silver */
+    --light: #f7f9fc; /* very light */
+    --dark: #071224; /* near-black navy */
+}
+
+/* Make Bootstrap-ish utility classes follow our CSS variables for consistent theming */
+.bg-primary { background-color: var(--primary) !important; }
+.text-primary { color: var(--primary) !important; }
+.btn.btn-primary { background-color: var(--primary); border-color: var(--primary); color: #ffffff; }
+
+/* Logo sizing in the navbar */
+.navbar-logo { height: 64px; max-height: 64px; }
+.navbar-logo-sm { height: 40px; max-height: 40px; }
+.navbar-brand.navbar-logo-wrap { padding: 0; }
+
+/* Slightly adjust brand text if used elsewhere */
+.navbar-brand h1 { margin: 0; font-size: 1.75rem; }
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 60px;
+    z-index: 99;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*** Button ***/
+.btn {
+    font-weight: 500;
+    transition: .5s;
+}
+
+.btn.btn-primary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+
+
+/*** Navbar ***/
+.navbar.fixed-top {
+    display: none;
+    transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+    padding: 20px 15px;
+    color: var(--dark);
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+/* Navbar background and shadow adjustments for contrast */
+.navbar.bg-white { background-color: var(--light) !important; }
+
+/* Buttons using silver outline style */
+.btn-outline-primary {
+    color: var(--dark);
+    border-color: var(--secondary);
+}
+.btn-outline-primary:hover {
+    background: var(--secondary);
+    color: var(--dark);
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-nav .nav-link  {
+        padding: 10px 0;
+    }
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        border: none;
+        margin-top: 0;
+        top: 150%;
+        right: 15px;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        top: 100%;
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+
+
+/*** Header ***/
+.btn-play {
+    position: relative;
+    display: block;
+    box-sizing: content-box;
+    width: 16px;
+    height: 26px;
+    border-radius: 100%;
+    border: none;
+    outline: none !important;
+    padding: 18px 20px 20px 28px;
+    background: var(--primary);
+}
+
+.btn-play:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 100%;
+    animation: pulse-border 1500ms ease-out infinite;
+}
+
+.btn-play:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 100%;
+    transition: all 200ms;
+}
+
+.btn-play span {
+    display: block;
+    position: relative;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    left: -1px;
+    border-left: 16px solid #FFFFFF;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(2);
+        opacity: 0;
+    }
+}
+
+.modal-video .modal-dialog {
+    position: relative;
+    max-width: 800px;
+    margin: 60px auto 0 auto;
+}
+
+.modal-video .modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+.modal-video .close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0px;
+    top: -30px;
+    z-index: 999;
+    font-size: 30px;
+    font-weight: normal;
+    color: #FFFFFF;
+    background: #000000;
+    opacity: 1;
+}
+
+.hero-header .breadcrumb-item+.breadcrumb-item::before {
+    color: var(--secondary);
+}
+
+
+/*** Facts ***/
+.fact-item {
+    transition: .3s;
+}
+
+.fact-item:hover {
+    margin-top: -10px;
+    background: #FFFFFF !important;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .07);
+}
+
+/* Ensure large numeric stats use a numeric-friendly font and tabular digits
+   to avoid decorative serif glyphs rendering numbers like 'O' instead of '0'. */
+.fact-number {
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Stronger override: ensure the large fact heading uses a numeric-friendly font
+   to prevent decorative serif fonts from rendering digits as glyph-like 'O'. */
+.fact-item h1.display-2 {
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    -webkit-font-variant-numeric: tabular-nums !important;
+    font-variant-numeric: tabular-nums !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+}
+
+
+/*** About ***/
+.img-twice::before {
+    position: absolute;
+    content: "";
+    width: 60%;
+    height: 80%;
+    top: 10%;
+    left: 20%;
+    border: 1rem solid var(--light);
+    z-index: -1;
+}
+
+
+/*** Service ***/
+.service-item,
+.service-item * {
+    transition: .3s;
+}
+
+.service-item:hover {
+    margin-top: -10px;
+    background: var(--primary) !important;
+}
+
+.service-item:hover * {
+    color: var(--light);
+}
+
+.service-item .service-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .5);
+    overflow: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+
+.service-item:hover .service-overlay {
+    opacity: 1;
+}
+
+
+/*** Project ***/
+.project-item {
+    position: relative;
+}
+
+.project-item .project-title {
+    position: absolute;
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 1rem;
+    text-align: center;
+    background: #FFFFFF;
+    transition: .5s;
+}
+
+.project-item:hover .project-title {
+    color: #FFFFFF;
+    background: var(--primary);
+}
+
+
+/*** Team ***/
+.team-img::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 30px solid;
+    border-color: transparent transparent #FFFFFF transparent;      
+}
+
+@media (min-width: 576px) {
+    .flex-sm-row .team-img::after,
+    .flex-lg-row-reverse .team-img::after {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translateY(-50%);
+        border-color: transparent #FFFFFF transparent transparent;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .flex-sm-row-reverse .team-img::after {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        transform: translateY(-50%);
+        border-color: transparent transparent transparent #FFFFFF;
+    }
+}
+
+@media (min-width: 992px) {
+    .flex-lg-row-reverse .team-img::after,
+    .flex-sm-row-reverse .team-img::after {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        transform: translateY(-50%);
+        border-color: transparent transparent transparent #FFFFFF;
+    }
+
+    .flex-sm-row-reverse.flex-lg-row .team-img::after {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translateY(-50%);
+        border-color: transparent #FFFFFF transparent transparent;
+    }
+}
+
+/* Footer color overrides: force any blue / primary text in the footer to white
+   This keeps the footer readable against the dark background without changing
+   utility classes site-wide. */
+#site-footer .text-primary,
+#site-footer a.text-primary,
+#site-footer a,
+#site-footer .display-5.text-primary {
+    color: #ffffff !important;
+}
+
+/* Ensure small footer links that use btn-link keep readable white color */
+#site-footer .btn-link {
+    color: #ffffff !important;
+}
+
+/* Force footer icons (Font Awesome / Bootstrap Icons) to white */
+#site-footer i,
+#site-footer .fa,
+#site-footer .fas,
+#site-footer .far,
+#site-footer .bi {
+    color: #ffffff !important;
+}
+
+
+/*** Testimonial ***/
+.testimonial-carousel .owl-item .testimonial-item img {
+    width: 60px;
+    height: 60px;
+}
+
+.testimonial-carousel .owl-item .testimonial-item,
+.testimonial-carousel .owl-item .testimonial-item * {
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item {
+    background: var(--primary) !important;
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item * {
+    color: #FFFFFF !important;
+}
+
+.testimonial-carousel .owl-nav {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-nav .owl-prev,
+.testimonial-carousel .owl-nav .owl-next {
+    margin: 0 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-size: 22px;
+    color: var(--light);
+    background: var(--primary);
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-nav .owl-prev:hover,
+.testimonial-carousel .owl-nav .owl-next:hover {
+    color: var(--primary);
+    background: var(--dark);
+}
+
+
+/*** Footer ***/
+@media (min-width: 992px) {
+    .footer::after {
+        position: absolute;
+        content: "";
+        width: 1px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        background: var(--secondary);
+    }
+}
+
+.footer-shape::before {
+    position: absolute;
+    content: "";
+    width: 80px;
+    height: 100%;
+    top: 0;
+    left: -40px;
+    background: var(--secondary);
+    transform: skew(40deg);
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: rgba(255, 255, 255, .5);
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: rgba(255, 255, 255, .5);
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    color: #ffffff !important;
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+/* Override remaining Bootstrap blue/info usages to match our brand */
+/* Links */
+a, a:link, a:visited {
+    color: var(--primary);
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Info and blue utility classes */
+.text-info { color: var(--primary) !important; }
+.bg-info { background-color: var(--primary) !important; }
+.border-info { border-color: var(--primary) !important; }
+
+/* Buttons and outlines that default to bootstrap blue */
+.btn.btn-info, .btn.btn-info:hover, .btn.btn-info:focus { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-outline-info { color: var(--primary); border-color: var(--primary); }
+.btn-outline-info:hover { background: var(--primary); color: #fff; }
+
+/* Form focus rings (replace default blue focus with subtle brand ring) */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 .2rem rgba(11,36,64,0.15) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Pagination */
+.page-link { color: var(--primary); }
+.page-item.active .page-link { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* Carousel / Owl arrows */
+.owl-nav .owl-prev, .owl-nav .owl-next, .testimonial-carousel .owl-nav .owl-prev, .testimonial-carousel .owl-nav .owl-next {
+    background: var(--primary) !important;
+    color: var(--light) !important;
+}
+.owl-nav .owl-prev:hover, .owl-nav .owl-next:hover, .testimonial-carousel .owl-nav .owl-prev:hover, .testimonial-carousel .owl-nav .owl-next:hover {
+    background: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+/* Icons that used the template blue (fontawesome arrows, etc.) */
+.text-primary i, i.text-primary, .fa, .fas, .far { color: var(--primary); }
+
+/* Stronger selector to neutralize bootstrap's .text-primary where needed */
+.text-primary.custom, .text-primary.override { color: var(--primary) !important; }
+
+/* Ensure svgs that inherit currentColor use the primary */
+svg { color: inherit; }
